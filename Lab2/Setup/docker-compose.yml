@@ -1,0 +1,19 @@
+services:
+  db:
+   image: "postgres:16"
+   environment:
+     - POSTGRES_PASSWORD=asdf1234
+     - POSTGRES_USER=sudha
+     - POSTGRES_DB=shelter
+   volumes:
+     - db_data:/var/lib/postgresql/data
+     - ./db/init.sql:/docker-entrypoint-initdb.d/initi.sql
+   ports:
+     - "5432:5432"
+  etl:
+    build: .
+    depends_on:
+      - db
+
+volumes:
+  db_data:
