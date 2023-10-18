@@ -40,7 +40,7 @@ def load_data(transformed_data):
 
     fact_table, animal, outcome_type, outcome_events = transformed_data
 
-    DATABASE_URL = "postgresql+psycopg2://sriram:ABCabc12345$@db:5432/shelter_hw"
+    DATABASE_URL = "postgresql+psycopg2://sudha:asdf1234@0.0.0.0:5432/shelter"
 
     engine = create_engine(DATABASE_URL)
 
