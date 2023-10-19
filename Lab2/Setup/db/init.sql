@@ -3,8 +3,8 @@ CREATE TABLE outcome (
     animal_name VARCHAR,
     ts TIMESTAMP,
     dob DATE,
+    outcome_event_id INT,
     outcome_type VARCHAR,
-    outcome_subtype VARCHAR,
     animal_type VARCHAR,
     age VARCHAR,
     breed VARCHAR,
@@ -24,7 +24,6 @@ CREATE TABLE animal (
 );
 
 CREATE TABLE outcome_type (
-    outcome_subtype INT PRIMARY KEY,
     outcome_type VARCHAR(20)
 );
 
@@ -45,5 +44,5 @@ CREATE TABLE fact_table (
     outcome_event_id INT,
     FOREIGN KEY (animal_id) REFERENCES animal(animal_id),
     FOREIGN KEY (outcome_subtype) REFERENCES outcome_type(outcome_subtype),
-    FOREIGN KEY (outcome_event_id) REFERENCES outcome_events(outcome_event_id)    
+    FOREIGN KEY (outcome_event_id) REFERENCES outcomes(outcome_event_id)    
 );
