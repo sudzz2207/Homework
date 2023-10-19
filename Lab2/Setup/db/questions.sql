@@ -35,7 +35,7 @@ FROM (
             DATE_PART('year', AGE(o.datetime, a.date_of_birth)) AS age_in_years
         FROM
             animal AS a
-            JOIN outcome_events AS o ON a.animal_id = o.animal_id
+            JOIN outcomes AS o ON a.animal_id = o.animal_id
             JOIN outcome_type AS ot ON ot.outcome_type_id = o.outcome_type_id
         WHERE
             ot.outcome_type = 'Adopted' AND a.animal_type = 'Cat'
@@ -48,6 +48,6 @@ SELECT
     date(datetime) AS "Date",
     COUNT(*) AS "Daily Outcomes",
     SUM(COUNT(*)) OVER (ORDER BY date(datetime)) AS "Cumulative Total Outcomes"
-FROM outcome_events
+FROM outcomes
 GROUP BY date(datetime)
 ORDER BY date(datetime);
