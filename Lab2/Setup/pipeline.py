@@ -5,7 +5,6 @@
 import pandas as pd
 import numpy as np
 import argparse 
-from sqlalchemy import create_engine
 
 from sqlalchemy import create_engine
 from sqlalchemy.engine import URL
