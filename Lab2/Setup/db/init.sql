@@ -23,7 +23,9 @@ CREATE TABLE animal (
     animal_type VARCHAR(20)
 );
 
-CREATE TABLE outcome_type (
+CREATE TABLE sex (
+    animal_type VARCHAR(20),
+    outcome_subtype VARCHAR(20),
     outcome_type VARCHAR(20)
 );
 
@@ -33,7 +35,6 @@ CREATE TABLE outcomes (
     sex VARCHAR(20),
     outcome_subtype VARCHAR(20),
     animal_id VARCHAR(20),
-    outcome_subtype VARCHAR,
     FOREIGN KEY (animal_id) REFERENCES animal(animal_id),
     FOREIGN KEY (outcome_subtype) REFERENCES outcome_type(outcome_subtype)
 );
