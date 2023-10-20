@@ -13,20 +13,20 @@ def transform_data(data):
     data_new.columns = [col.lower() for col in data_new.columns]
 
     animal_columns = ['animal_id', 'breed', 'color', 'animal_name', 'animal_type', 'dob']
-    outcome_event_columns = ['outcomes', 'datetime', 'sex', 'outcome_subtype', 'animal_id', 'outcome_subtype']
+    outcomes_columns = ['outcomes', 'datetime', 'sex', 'outcome_subtype', 'animal_id', 'outcome_subtype']
     fact_table_columns = ['outcomes', 'outcome_subtype', 'animal_id']
 
     data_new['outcomes'] = data_new.index + 1
 
     animal = data_new[animal_columns].drop_duplicates('animal_id', keep='first').reset_index(drop=True)
-    unique_outcome_type = data_new[['outcome_type']].drop_duplicates().reset_index(drop=True)
-    unique_outcome_type['outcome_subtype'] = unique_outcome_type.index + 1
-    outcome_type = unique_outcome_type[['outcome_subtype', 'outcome_type']]
+    unique_sex = data_new[['outcome_type']].drop_duplicates().reset_index(drop=True)
+    unique_sex['outcome_subtype'] = unique_sex.index + 1
+    sex = unique_sex[['outcome_subtype', 'outcome_type']]
 
-    outcome_subtype_map = dict(zip(unique_outcome_type['outcome_type'], unique_outcome_type['outcome_subtype']))
+    outcome_subtype_map = dict(zip(unique_sex['outcome_type'], unique_sex['outcome_subtype']))
     data_new['outcome_subtype'] = data_new['outcome_type'].map(outcome_subtype_map)
 
-    outcomes = data_new[outcome_event_columns]
+    outcomes = data_new[outcomes_columns]
 
     outcomes.reset_index(drop=True, inplace=True)
 
@@ -45,7 +45,7 @@ def load_data(transformed_data):
     engine = create_engine(DATABASE_URL)
 
     animal.to_sql('animal', engine, if_exists='append', index=False)
-    outcome_type.to_sql('outcome_type', engine, if_exists='append', index=False)
+    sex.to_sql('sex', engine, if_exists='append', index=False)
     outcomes.to_sql('outcomes', engine, if_exists='append', index=False)
     fact_table.to_sql('fact_table', engine, if_exists='append', index=False)
 
