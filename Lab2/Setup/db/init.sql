@@ -47,5 +47,3 @@ CREATE TABLE fact_table (
     FOREIGN KEY (outcome_subtype) REFERENCES outcome_type(outcome_subtype),
     FOREIGN KEY (outcome_event_id) REFERENCES outcomes(outcome_event_id)    
 );
-
-
