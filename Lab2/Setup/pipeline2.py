@@ -38,7 +38,7 @@ def transform_data(data):
 def load_data(transformed_data):
     print('Loading data...')
 
-    fact_table, animal, outcome_type, outcomes = transformed_data
+    fact_table, animal, sex, outcomes = transformed_data
 
     DATABASE_URL = "postgresql+psycopg2://sudha:asdf1234@0.0.0.0:5432/shelter"
 
