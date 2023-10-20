@@ -31,7 +31,7 @@ CREATE TABLE sex (
 
 CREATE TABLE outcomes (
     outcome_event_id INT PRIMARY KEY,
-    datetime TIMESTAMP,
+    ts TIMESTAMP,
     sex VARCHAR(20),
     outcome_subtype VARCHAR(20),
     animal_id VARCHAR(20),
@@ -47,3 +47,5 @@ CREATE TABLE fact_table (
     FOREIGN KEY (outcome_subtype) REFERENCES outcome_type(outcome_subtype),
     FOREIGN KEY (outcome_event_id) REFERENCES outcomes(outcome_event_id)    
 );
+
+
